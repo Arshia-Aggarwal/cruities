@@ -30,6 +30,14 @@ const Jobs = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    contactnumber: {
+      type: Number,
+      required: true,
+    },
+    contactid: {
+      type: Number,
+      required: true,
+    },
   },
   { timestamps: true }
 );
