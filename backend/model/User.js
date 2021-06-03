@@ -5,7 +5,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     max: 400,
     min: 6,
-    required: true,
   },
   pincode: {
     type: Number,
