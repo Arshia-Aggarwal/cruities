@@ -8,6 +8,7 @@ const postRoute = require("./routes/posts");
 const couponRoute = require("./routes/couponsRoutes");
 const jobRoute = require("./routes/jobsRoutes");
 const userRoute = require("./routes/userRoutes");
+const path = require("path");
 dotenv.config();
 
 // connect to database
@@ -33,6 +34,10 @@ app.use("/api/posts", postRoute);
 app.use("/api", couponRoute);
 app.use("/api", jobRoute);
 app.use("/api", userRoute);
+app.use(express.static(path.join(__dirname, "./index.html")));
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./index.html"));
+});
 
 app.listen(process.env.PORT || 3000, () =>
   console.log("Server Up and running")
