@@ -34,4 +34,6 @@ app.use("/api", couponRoute);
 app.use("/api", jobRoute);
 app.use("/api", userRoute);
 
-app.listen(3000, () => console.log("Server Up and running"));
+app.listen(process.env.PORT || 3000, () =>
+  console.log("Server Up and running")
+);
