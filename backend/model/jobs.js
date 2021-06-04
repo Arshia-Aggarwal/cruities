@@ -4,8 +4,6 @@ const Jobs = new mongoose.Schema(
   {
     title: {
       type: String,
-      max: 400,
-      min: 4,
       required: true,
     },
     userId: {
@@ -14,8 +12,6 @@ const Jobs = new mongoose.Schema(
     },
     description: {
       type: String,
-      max: 800,
-      min: 4,
       required: true,
     },
     duration: {

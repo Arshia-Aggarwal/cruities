@@ -34,10 +34,14 @@ router.post("/business/create/job", async (req, res) => {
   }
 });
 
-router.get("/send", (req, res) => {
+router.post("/send", async (req, res) => {
   // activate when owner adds jobs
   // match pincode and sesned to all contact
-
+  const owner = await BusinessOwner.findOne({ email: req.body.email });
+  const pincode = owner.pinCode;
+  const user = await User.find({ pincode: pincode });
+  const userEmail = user.email;
+  console.log(userEmail);
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 25,
@@ -50,9 +54,9 @@ router.get("/send", (req, res) => {
 
   let mailOptions = {
     from: "thebackholders@gmail.com",
-    to: "rahulgoyal233.rg@gmail.com",
+    to: userEmail,
     subject: "Testing and Testing",
-    text: "Randibaaz!",
+    text: "bdtmeez",
   };
 
   transporter.sendMail(mailOptions, (error, info) => {

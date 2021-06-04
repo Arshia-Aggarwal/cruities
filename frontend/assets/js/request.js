@@ -19,6 +19,7 @@ async function registerowner() {
     .post("http://localhost:3000/api/user/register", obj)
     .then((res) => {
       console.log(res.data);
+      window.location.href = "./index.html";
     })
     .catch(function (error) {
       console.log(error);
@@ -63,7 +64,6 @@ async function registerowner() {
   //   .then((data) => console.log(data));
 }
 async function loginowner() {
-  // console.log("Yay2");
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
   // console.log(email, password);
@@ -80,11 +80,13 @@ async function loginowner() {
     })
     .catch(function (error) {
       console.log(error);
+      alert("Trouble Logging in. Please verify details entered");
     });
 }
 async function addcoupon() {
   // console.log(valid);
-  let v = document.getElementById("valid").value;
+  let v = new Date();
+  v = document.getElementById("valid").value;
   let d = document.getElementById("discount").value;
   let op = document.getElementById("op").value;
   let n = document.getElementById("number").value;
@@ -102,8 +104,8 @@ async function addcoupon() {
     .post("http://localhost:3000/api/business/create/coupon", obj)
     .then((res) => {
       console.log(res.data);
-      // localStorage.setItem("token", res.data);
-      // window.location.href = "./Business.html";
+      alert("The coupon has been added successfully");
+      window.location.href = "./Sell.html";
     })
     .catch(function (error) {
       console.log(error);
@@ -126,6 +128,21 @@ async function addjob() {
   console.log(obj);
   await axios
     .post("http://localhost:3000/api/business/create/job", obj)
+    .then((res) => {
+      console.log(res.data);
+      alert("The job has been added successfully");
+      window.location.href = "./Hire.html";
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+
+async function sendmail() {
+  // ..................mailer........
+  let email = localStorage.getItem("email");
+  await axios
+    .post("http://localhost:3000/api/send", { email: email })
     .then((res) => {
       console.log(res.data);
     })
@@ -214,18 +231,25 @@ async function getcouponuser() {
           coupon.validTill +
           "</p>" +
           "</div>" +
-          "</div>" +
-          "</div>" +
           '<div class="razorpay-embed-btn" data-url="https://pages.razorpay.com/pl_HIasQcLk7r1o4O/view" data-text="BUY" data-color="#33CCC5" data-size="small">' +
           "<script>" +
-          "(function () { var d = document; var x = !d.getElementById('razorpay-embed-btn-js')" +
-          "if" +
-          "(x)" +
-          "{ var s = d.createElement('script'); s.defer = !0; s.id = 'razorpay-embed-btn-js'; s.src = 'https://cdn.razorpay.com/static/embed_btn/bundle.js'; d.body.appendChild(s);}" +
-          "else" +
-          "{ var rzp = window['_rzp_']; rzp && rzp.init && rzp.init() }" +
-          "})();" +
+          (function () {
+            var d = document;
+            var x = !d.getElementById("razorpay-embed-btn-js");
+            if (x) {
+              var s = d.createElement("script");
+              s.defer = !0;
+              s.id = "razorpay-embed-btn-js";
+              s.src = "https://cdn.razorpay.com/static/embed_btn/bundle.js";
+              d.body.appendChild(s);
+            } else {
+              var rzp = window["_rzp_"];
+              rzp && rzp.init && rzp.init();
+            }
+          })() +
           "</script>" +
+          "</div>" +
+          "</div>" +
           "</div>"
         );
       });
@@ -322,6 +346,9 @@ async function getjobuser() {
         );
       });
       document.getElementById("jobsusercontainer").innerHTML = jobs;
+      if (res.data.length == 0) {
+        alert("Sorry! Currently no jobs available in your locality");
+      }
       // localStorage.setItem("token", res.data);
       // window.location.href = "./Business.html";
     })

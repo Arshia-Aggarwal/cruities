@@ -16,8 +16,6 @@ const addCoupons = new mongoose.Schema(
     },
     description: {
       type: String,
-      max: 800,
-      min: 4,
       required: true,
     },
     pincode: {
@@ -34,20 +32,14 @@ const addCoupons = new mongoose.Schema(
     },
     noOfCoupons: {
       type: Number,
-      max: 1000,
-      min: 1,
       required: true,
     },
     offeringPrice: {
       type: Number,
-      max: 100000,
-      min: 1,
       required: true,
     },
     couponsUsed: {
       type: Number,
-      max: 1000,
-      min: 1,
       default: 1,
     },
     companyName: {

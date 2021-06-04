@@ -38,15 +38,15 @@ router.post("/login", async (req, res) => {
   // if newowner exists
   const newowner = await Owner.findOne({ email: req.body.email });
   if (!newowner)
-    return res.status(400).send("password or email doesn't exists");
+    return res.status(400).json("password or email doesn't exists");
 
   // password correct
   const validPass = await bcrypt.compare(req.body.password, newowner.password);
-  if (!validPass) return res.status(400).send("invalid password");
+  if (!validPass) return res.status(400).json("invalid password");
 
   // create jwt token and assign
   const token = jwt.sign({ _id: newowner._id }, process.env.TOKEN_SECRET);
-  res.header("auth-token", token).send(token);
+  res.header("auth-token", token).json(token);
 
   // res.send("logged in");
 });
