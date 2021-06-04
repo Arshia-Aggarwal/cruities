@@ -16,7 +16,7 @@ async function registerowner() {
   };
   console.log(obj);
   await axios
-    .post("http://localhost:3000/api/user/register", obj)
+    .post("https://cruities.herokuapp.com/api/user/register", obj)
     .then((res) => {
       console.log(res.data);
       alert("Registered Successfully");
@@ -26,7 +26,7 @@ async function registerowner() {
       console.log(error);
       alert("Verify details. Old users proceed to login");
     });
-  // fetch("http://localhost:3000/api/user/register", {
+  // fetch("https://cruities.herokuapp.com/api/user/register", {
   //   method: "POST",
   //   body: JSON.stringify(obj),
   //   headers: {
@@ -48,7 +48,7 @@ async function registerowner() {
   //     console.warn("Something went wrong.", err);
   //   });
 
-  // fetch("http://localhost:3000/api/business/create/coupon", {
+  // fetch("https://cruities.herokuapp.com/api/business/create/coupon", {
   //   method: "POST",
   //   headers: {
   //     "content-type": "application/json",
@@ -74,7 +74,7 @@ async function loginowner() {
     password: password,
   };
   await axios
-    .post("http://localhost:3000/api/user/login", obj)
+    .post("https://cruities.herokuapp.com/api/user/login", obj)
     .then((res) => {
       console.log(res.data);
       localStorage.setItem("email", email);
@@ -103,7 +103,7 @@ async function addcoupon() {
     email: email,
   };
   await axios
-    .post("http://localhost:3000/api/business/create/coupon", obj)
+    .post("https://cruities.herokuapp.com/api/business/create/coupon", obj)
     .then((res) => {
       console.log(res.data);
       alert("The coupon has been added successfully");
@@ -129,7 +129,7 @@ async function addjob() {
   };
   console.log(obj);
   await axios
-    .post("http://localhost:3000/api/business/create/job", obj)
+    .post("https://cruities.herokuapp.com/api/business/create/job", obj)
     .then((res) => {
       console.log(res.data);
       alert("The job has been added successfully");
@@ -145,7 +145,7 @@ async function sendmail() {
   // ..................mailer........
   let email = localStorage.getItem("email");
   await axios
-    .post("http://localhost:3000/api/send", { email: email })
+    .post("https://cruities.herokuapp.com/api/send", { email: email })
     .then((res) => {
       console.log(res.data);
     })
@@ -158,7 +158,9 @@ async function sendmail() {
 async function getcouponbusiness() {
   let email = localStorage.getItem("email");
   await axios
-    .post("http://localhost:3000/api/business/coupons", { email: email })
+    .post("https://cruities.herokuapp.com/api/business/coupons", {
+      email: email,
+    })
     .then((res) => {
       console.log(res.data);
       let coupons = res.data.map(function (coupon) {
@@ -205,7 +207,9 @@ async function getcouponuser() {
   // let email = localStorage.getItem("email");
   let pincode = document.getElementById("userpin").value;
   await axios
-    .post("http://localhost:3000/api/user/coupons", { pincode: pincode })
+    .post("https://cruities.herokuapp.com/api/user/coupons", {
+      pincode: pincode,
+    })
     .then((res) => {
       console.log(res.data);
       let coupons = res.data.map(function (coupon) {
@@ -272,7 +276,7 @@ async function getcouponuser() {
 async function getjobbusiness() {
   let email = localStorage.getItem("email");
   await axios
-    .post("http://localhost:3000/api/business/jobs", { email: email })
+    .post("https://cruities.herokuapp.com/api/business/jobs", { email: email })
     .then((res) => {
       console.log(res.data);
       let jobs = res.data.map(function (job) {
@@ -318,7 +322,7 @@ async function getjobbusiness() {
 async function getjobuser() {
   let pincode = document.getElementById("userpincode").value;
   await axios
-    .post("http://localhost:3000/api/user/jobs", { pincode: pincode })
+    .post("https://cruities.herokuapp.com/api/user/jobs", { pincode: pincode })
     .then((res) => {
       console.log(res.data);
       let jobs = res.data.map(function (job) {
@@ -375,7 +379,7 @@ async function registeruser() {
   };
   console.log(obj);
   await axios
-    .post("http://localhost:3000/api/user/email", obj)
+    .post("https://cruities.herokuapp.com/api/user/email", obj)
     .then((res) => {
       console.log(res.data);
       window.location.href = "./JobsUser.html";
