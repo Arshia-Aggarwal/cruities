@@ -6,14 +6,14 @@ const User = require("../model/User");
 const nodemailer = require("nodemailer");
 const jobs = require("../model/jobs.js");
 
-router.post("/business/create/job", verifyToken, async (req, res) => {
-  //   let pincode = parseInt(req.newowner.pincode);
-  // contact details uthao from database and pincode uthao or link to db
-
-  let { title, description, duration, payRange, pincode } = req.body;
-
+router.post("/business/create/job", async (req, res) => {
+  let { title, description, duration, payRange } = req.body;
   payRange = parseInt(payRange);
-
+  const owner = await BusinessOwner.findOne({ email: req.body.email });
+  let pincode = owner.pinCode;
+  let contactid = owner.email;
+  let contactnumber = owner.contact;
+  let userId = owner._id;
   const newjob = new Jobs({
     title,
     description,
@@ -28,6 +28,7 @@ router.post("/business/create/job", verifyToken, async (req, res) => {
   try {
     const savedJob = await newjob.save();
     res.json({ savedJob });
+    console.log(savedJob);
   } catch (err) {
     res.status(500).send(err);
   }
@@ -65,19 +66,19 @@ router.get("/send", (req, res) => {
   });
 });
 
-router.get("/business/jobs", verifyToken, async (req, res) => {
-  // match userId from database and display
-
-  const { userId } = req.newowner.userId;
+router.post("/business/jobs", async (req, res) => {
+  const owner = await BusinessOwner.findOne({ email: req.body.email });
+  const userId = owner._id;
   try {
     const addedJobs = await Jobs.find({ userId: userId });
     res.status(200).json(addedJobs);
+    console.log(addedJobs);
   } catch (err) {
     res.status(500).send(err);
   }
 });
 
-router.get("/user/jobs", async (req, res) => {
+router.post("/user/jobs", async (req, res) => {
   const pinCode = req.body.pincode;
 
   try {

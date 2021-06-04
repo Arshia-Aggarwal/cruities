@@ -1,32 +1,31 @@
 const router = require("express").Router();
-const mongoose = require("mongoose");
 const Coupons = require("../model/coupons.js");
 const BusinessOwner = require("../model/registration.js");
 const verifyToken = require("./verifyToken");
 
-router.get("/business/coupons", verifyToken, async (req, res) => {
+router.post("/business/coupons", async (req, res) => {
   // use verifytoken for userid nd filter
-
-  const { userId } = req.newowner.userId;
+  const owner = await BusinessOwner.findOne({ email: req.body.email });
+  const { userId } = owner._id;
   try {
     const addedCoupons = await Coupons.find({ userId: userId });
     res.status(200).json(addedCoupons);
+    console.log(addedCoupons);
   } catch (err) {
     res.status(500).send(err);
   }
 });
 
 router.post("/business/create/coupon", async (req, res) => {
-  //   let pincode = parseInt(req.newowner.pincode);
   // take pincode from verifytoken , couponcode allot
-  // and couponsUsed function
-
+  // console.log(req.body.email);
+  const user = await BusinessOwner.findOne({ email: req.body.email });
+  // console.log(user.pinCode);
   let { discountRate, description, validTill, noOfCoupons, offeringPrice } =
     req.body;
-
-  pincode = 141401;
   let couponCode = "aditya73";
-
+  let pincode = user.pinCode;
+  let companyName = user.name;
   discountRate = parseInt(discountRate);
   noOfCoupons = parseInt(noOfCoupons);
   offeringPrice = parseInt(offeringPrice);
@@ -37,6 +36,7 @@ router.post("/business/create/coupon", async (req, res) => {
     description,
     pincode,
     validTill,
+    companyName,
     noOfCoupons,
     couponCode,
     offeringPrice,
@@ -51,11 +51,11 @@ router.post("/business/create/coupon", async (req, res) => {
   }
 });
 
-router.get("/user/coupons", async (req, res) => {
-  let pinCode = req.body.pincode;
-
+router.post("/user/coupons", async (req, res) => {
+  let pincode = req.body.pincode;
+  console.log(pincode);
   try {
-    const addedCoupons = await Coupons.find({ pincode: pinCode });
+    const addedCoupons = await Coupons.find({ pincode: pincode });
     res.status(200).json(addedCoupons);
   } catch (err) {
     res.status(500).send(err);

@@ -5,18 +5,18 @@ const RegisterationSchema = new mongoose.Schema(
     name: {
       type: String,
       max: 400,
-      min: 4,
+      // min: 4,
       required: true,
     },
     email: {
       type: String,
       max: 400,
-      min: 6,
+      // min: 6,
       required: true,
     },
     password: {
       type: String,
-      min: 6,
+      // min: 6,
       required: true,
     },
 

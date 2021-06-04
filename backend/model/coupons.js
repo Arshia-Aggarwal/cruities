@@ -50,6 +50,10 @@ const addCoupons = new mongoose.Schema(
       min: 1,
       default: 1,
     },
+    companyName: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

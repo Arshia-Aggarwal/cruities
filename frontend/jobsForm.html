@@ -94,27 +94,27 @@ https://templatemo.com/tm-563-seo-dream
         <div class="row">
             <div class="col-lg-12">
                 <fieldset>
-                  <input type="Title" name="Title" id="text" placeholder="Title" autocomplete="on" required>
+                  <input type="Title" name="Title" id="jobtitle" placeholder="Title" autocomplete="on" required>
                 </fieldset>
               </div>
             <div class="col-lg-12">
                 <fieldset>
-                  <textarea name=" description" type="subject" class="form-control" id="description" placeholder="description" required=""></textarea>  
+                  <textarea name=" description" type="subject" class="form-control" id="jobdescription" placeholder="description" required=""></textarea>  
                 </fieldset>
               </div>
          
           <div class="col-lg-6">
             <fieldset>
-              <input type="Subject" name="Duration" id="Duration" placeholder="Duration" autocomplete="on" required>
+              <input type="Subject" name="Duration" id="duration" placeholder="Duration" autocomplete="on" required>
             </fieldset>
           </div>
           <div class="col-lg-6">
             <fieldset>
-              <input type="number" name="Pay Range" id="number"  placeholder="Pay Range" required="">
+              <input type="number" name="PayRange" id="payrange"  placeholder="Pay" required="">
             </fieldset>
             </div>
             <div class="col-lg-6 col offset-lg-3">
-                <input class="btn btn-primary" type="submit" value="Submit">
+                <a class="btn btn-primary" onclick="addjob()" >Submit</a>
             </div>
           </div>
           <footer>
@@ -136,6 +136,8 @@ https://templatemo.com/tm-563-seo-dream
   <script src="assets/js/animation.js"></script>
   <script src="assets/js/imagesloaded.js"></script>
   <script src="assets/js/custom.js"></script>
+  <script src="assets/js/request.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 </body>
 </html>

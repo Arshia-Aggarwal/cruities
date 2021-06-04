@@ -97,18 +97,20 @@ https://templatemo.com/tm-563-seo-dream
                       <div class="col-lg-9 offset-lg-3">
                   <div class="col-lg-9">
                     <fieldset>
-                      <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email(For regular updates) " >
+                      <input type="text" name="email" id="useremail" pattern="[^ @]*@[^ @]*" placeholder="Your Email(For regular updates) " >
                     </fieldset>
                   </div>
                   <div class="col-lg-9">
                     <fieldset>
-                      <input type="pincode" name="number" required="true" id="pincode" placeholder="pincode" autocomplete="on">
+                      <input type="pincode" name="number" required="true" id="userpincode" placeholder="pincode" autocomplete="on">
                     </fieldset>
                   </div>
                 
                   <div class="col-lg-9">
                     <fieldset>
-                      <div class="col-md-12 "> <button type="button" class="btn btn-primary btn-lg"><span><a href="JobsUser.html">Submit</a></span></button>
+                      <div class="col-md-12 ">
+                      <a onclick="registeruser()" class="btn btn-primary btn-lg">
+                        Submit</a>
                     </fieldset>
                   </div>
                 </div>
@@ -117,24 +119,7 @@ https://templatemo.com/tm-563-seo-dream
               </div>
               </div>
               </div>
-              <!-- <div id="job-section">
-              <div class="container2">
-                <div class="card mx-auto">
-                    <div class="row">
-                        
-                        <div class="header right"><i class="fas fa-ellipsis-h"></i></div>
-                    </div>
-                    <div class="card-title">
-                        <p class="heading">Sample Job Title</p>&nbsp;<i class="far fa-compass"></i></p>
-                    </div>
-                    <p class="text-muted">You will be responsible for the visual design<br>for multi device.Understand basic design,<br>User journey, Ideation and Wireframing, etc...</p>
-                    
-                    <div class="mutual"><i class="fas fa-users"></i>&nbsp;&nbsp;<span>5 Friends work here</span></div>
-                    <div class="row btnsubmit mt-4">
-                        <div class="col-md-12 "> <button type="button" class="btn btn-primary btn-lg"><span>Apply Now</span></button> </div>
-                        
-                    </div>
-                </div> -->
+       
             </div>
           </div>
              
@@ -158,6 +143,8 @@ https://templatemo.com/tm-563-seo-dream
               <script src="assets/js/animation.js"></script>
               <script src="assets/js/imagesloaded.js"></script>
               <script src="assets/js/custom.js"></script>
+               <script src="assets/js/request.js"></script>
+              <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
             
             </body>
             </html>

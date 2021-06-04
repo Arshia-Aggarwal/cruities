@@ -20,6 +20,11 @@ mongoose.connect(
 // middleware
 // for reading the name etc given by request body
 app.use(express.json());
+var corsOptions = {
+  // in: null,
+  methods: "GET, PUT",
+  // optionsSuccessStatus: 200, // For legacy browser support
+};
 app.use(cors());
 
 // routes middlewae
