@@ -34,7 +34,9 @@ app.use("/api/posts", postRoute);
 app.use("/api", couponRoute);
 app.use("/api", jobRoute);
 app.use("/api", userRoute);
-app.use(express.static(path.join(__dirname, "./index.html")));
+// app.use(express.static(path.join(__dirname, "./index.html")));
+app.use(express.static(path.join(__dirname, "/")));
+
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "./index.html"));
 });
