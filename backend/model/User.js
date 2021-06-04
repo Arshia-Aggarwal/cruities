@@ -4,6 +4,7 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     max: 400,
+    required: true,
   },
   pincode: {
     type: Number,

@@ -19,10 +19,12 @@ async function registerowner() {
     .post("http://localhost:3000/api/user/register", obj)
     .then((res) => {
       console.log(res.data);
+      alert("Registered Successfully");
       window.location.href = "./index.html";
     })
     .catch(function (error) {
       console.log(error);
+      alert("Verify details. Old users proceed to login");
     });
   // fetch("http://localhost:3000/api/user/register", {
   //   method: "POST",
@@ -135,6 +137,7 @@ async function addjob() {
     })
     .catch(function (error) {
       console.log(error);
+      alert("Verify details entered");
     });
 }
 
@@ -166,7 +169,7 @@ async function getcouponbusiness() {
           "<h3>" +
           "<b>" +
           coupon.discountRate +
-          "OFF YOUR PURCHASE</b>" +
+          "% OFF YOUR PURCHASE</b>" +
           "</h3>" +
           "<h5>" +
           coupon.companyName +
@@ -213,7 +216,7 @@ async function getcouponuser() {
           "<h3>" +
           "<b>" +
           coupon.discountRate +
-          "OFF YOUR PURCHASE</b>" +
+          "% OFF YOUR PURCHASE</b>" +
           "</h3>" +
           "<h5>" +
           coupon.companyName +
@@ -256,6 +259,9 @@ async function getcouponuser() {
       document.getElementById("couponscontainer").innerHTML = coupons;
       // localStorage.setItem("token", res.data);
       // window.location.href = "./Business.html";
+      if (res.data.length == 0) {
+        alert("Sorry! Currently no coupons available in your locality");
+      }
     })
     .catch(function (error) {
       console.log(error);
@@ -376,5 +382,6 @@ async function registeruser() {
     })
     .catch(function (error) {
       console.log(error);
+      alert("Incomplete details provided");
     });
 }

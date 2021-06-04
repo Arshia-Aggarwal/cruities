@@ -4,9 +4,8 @@ const BusinessOwner = require("../model/registration.js");
 const verifyToken = require("./verifyToken");
 
 router.post("/business/coupons", async (req, res) => {
-  // use verifytoken for userid nd filter
   const owner = await BusinessOwner.findOne({ email: req.body.email });
-  const { userId } = owner._id;
+  const userId = owner._id;
   try {
     const addedCoupons = await Coupons.find({ userId: userId });
     res.status(200).json(addedCoupons);
@@ -25,6 +24,7 @@ router.post("/business/create/coupon", async (req, res) => {
     req.body;
   let couponCode = "aditya73";
   let pincode = user.pinCode;
+  let userId = user._id;
   let companyName = user.name;
   discountRate = parseInt(discountRate);
   noOfCoupons = parseInt(noOfCoupons);
@@ -37,6 +37,7 @@ router.post("/business/create/coupon", async (req, res) => {
     pincode,
     validTill,
     companyName,
+    userId,
     noOfCoupons,
     couponCode,
     offeringPrice,

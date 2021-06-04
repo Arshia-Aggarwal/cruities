@@ -5,7 +5,6 @@ const jwt = require("jsonwebtoken");
 
 router.post("/register", async (req, res) => {
   // if newowner exists
-  console.log("reached 1");
   // res.setHeader("Access-Control-Allow-Origin", "*");
   const emailExist = await Owner.findOne({ email: req.body.email });
   if (emailExist) return res.status(400).send("email already exists");
