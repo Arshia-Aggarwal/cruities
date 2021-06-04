@@ -1,10 +1,10 @@
 # cruities
 Aiding local businesses in current and post-pandemic situations.
 # Installation
-``bash
+```bash
 npm install  
 npm start
-``
+```
 # Usage
 After completing the installation, open index.html (from the frontend folder) in the browser. The .env file is generally not pushed as it contains sensitive information and password, but for the purpose of the hackathon we have pushed the .env file. To use your own database edit
 the credentials in .env.
