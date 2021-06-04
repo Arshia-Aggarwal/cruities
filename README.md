@@ -6,7 +6,7 @@ npm install
 npm start
 ``
 # Usage
-After completing the installation, open index.html in the browser. The .env file is generally not pushed as it contains sensitive information and password, but for the purpose of the hackathon we have pushed the .env file. To use your own database edit
+After completing the installation, open index.html (from the frontend folder) in the browser. The .env file is generally not pushed as it contains sensitive information and password, but for the purpose of the hackathon we have pushed the .env file. To use your own database edit
 the credentials in .env.
 # Working
 The business owner can navigate to the top right of the navbar and register his business. Once the business is registered directly login and then access the facilities such as selling coupons annd
